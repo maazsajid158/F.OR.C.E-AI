@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { GeminiService } from '../services/geminiService';
 import { MarketAnalysisReport } from '../types';
 
@@ -7,7 +7,7 @@ const ForceAnalysis: React.FC = () => {
   const [ticker, setTicker] = useState('BTC');
   const [report, setReport] = useState<MarketAnalysisReport | null>(null);
   const [loading, setLoading] = useState(false);
-  const gemini = new GeminiService();
+  const gemini = useMemo(() => new GeminiService(), []);
 
   const handleAnalysis = async () => {
     if (!ticker) return;

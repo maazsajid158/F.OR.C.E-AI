@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { ICONS } from '../constants';
 import { ViewType } from '../types';
 import { GeminiService } from '../services/geminiService';
@@ -8,13 +8,20 @@ interface LayoutProps {
   children: React.ReactNode;
   activeView: ViewType;
   setActiveView: (view: ViewType) => void;
+  /** Clears session and returns user to signup when provided */
+  onLogout?: () => void;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, activeView, setActiveView }) => {
+const Layout: React.FC<LayoutProps> = ({
+  children,
+  activeView,
+  setActiveView,
+  onLogout,
+}) => {
   const [pulse, setPulse] = useState('Initializing market stream...');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const gemini = new GeminiService();
+  const gemini = useMemo(() => new GeminiService(), []);
 
   useEffect(() => {
     const fetchPulse = async () => {
@@ -163,6 +170,18 @@ const Layout: React.FC<LayoutProps> = ({ children, activeView, setActiveView }) 
             >
               AI
             </button>
+            {onLogout && (
+              <button
+                type="button"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  onLogout();
+                }}
+                className="text-xs font-semibold text-slate-400 hover:text-rose-400 border border-slate-700 hover:border-rose-500/40 rounded-xl px-3 py-1.5 transition-colors"
+              >
+                Log out
+              </button>
+            )}
           </div>
         </div>
       </header>

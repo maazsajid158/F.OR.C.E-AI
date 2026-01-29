@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Layout from './components/Layout';
 import Dashboard from './components/Dashboard';
 import ForceAnalysis from './components/ForceAnalysis';
@@ -12,7 +12,7 @@ import { ViewType } from './types';
 
 const App: React.FC = () => {
   const [activeView, setActiveView] = useState<ViewType>('DASHBOARD');
-  
+
   // Initialize authentication state from localStorage to persist sessions
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
     try {
@@ -24,11 +24,20 @@ const App: React.FC = () => {
   });
 
   const handleSignupComplete = () => {
+    try {
+      localStorage.setItem('force_session', '1');
+    } catch {
+      /* ignore storage errors */
+    }
     setIsAuthenticated(true);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('force_session');
+    try {
+      localStorage.removeItem('force_session');
+    } catch {
+      /* ignore */
+    }
     setIsAuthenticated(false);
     setActiveView('DASHBOARD');
   };
