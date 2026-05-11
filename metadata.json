@@ -1,5 +1,5 @@
 {
-  "name": "Copy of F.O.R.C.E AI - Market Analyst System",
+  "name": "F.O.R.C.E AI - Market Analyst System",
   "description": "Financial Outlook Risk Control Evaluator: An AI-driven trading system providing real-time sentiment analysis, price predictions, and automated trading signals.",
   "requestFramePermissions": [
     "microphone"

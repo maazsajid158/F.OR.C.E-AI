@@ -1,8 +1,9 @@
 
 import React from 'react';
-import { 
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
-  BarChart, Bar, Cell 
+import {
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  BarChart, Bar, Rectangle,
+  type BarShapeProps,
 } from 'recharts';
 import { MOCK_CHART_DATA, MOCK_SIGNALS } from '../constants';
 
@@ -115,11 +116,21 @@ const Dashboard: React.FC = () => {
                  cursor={{fill: '#1e293b'}} 
                  contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }}
                />
-               <Bar dataKey="sentiment" radius={[4, 4, 0, 0]}>
-                 {(val, index) => (
-                   <Cell key={`cell-${index}`} fill={val >= 50 ? '#10b981' : '#f43f5e'} fillOpacity={0.8} />
-                 )}
-               </Bar>
+               <Bar
+                 dataKey="sentiment"
+                 radius={[4, 4, 0, 0]}
+                 shape={(props: BarShapeProps) => {
+                   const raw =
+                     typeof props.value === 'number'
+                       ? props.value
+                       : Array.isArray(props.value)
+                         ? props.value[0]
+                         : props.payload?.sentiment;
+                   const sentiment = typeof raw === 'number' ? raw : Number(raw);
+                   const fill = sentiment >= 50 ? '#10b981' : '#f43f5e';
+                   return <Rectangle {...props} fill={fill} fillOpacity={0.8} />;
+                 }}
+               />
              </BarChart>
            </ResponsiveContainer>
         </div>

@@ -1,5 +1,5 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { GeminiService } from '../services/geminiService';
 import { ChatMessage } from '../types';
 
@@ -11,7 +11,7 @@ const Chatbot: React.FC = () => {
   const [isLowLatency, setIsLowLatency] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const gemini = new GeminiService();
+  const gemini = useMemo(() => new GeminiService(), []);
 
   useEffect(() => {
     scrollRef.current?.scrollTo(0, scrollRef.current.scrollHeight);
