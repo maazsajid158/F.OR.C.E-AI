@@ -12,7 +12,6 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate a high-end neural verification delay
     setTimeout(() => {
       onSignup();
     }, 1200);
@@ -26,65 +25,112 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0b14] flex flex-col items-center justify-center p-4 relative overflow-hidden font-['Inter'] text-slate-200">
-      {/* Background Grid Effect */}
+    <div className="min-h-screen bg-[#080a12] flex flex-col items-center justify-center p-4 relative overflow-hidden font-sans text-slate-200">
+      {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Ambient glow effects */}
-        <div className="absolute top-[20%] left-[10%] w-[300px] h-[300px] bg-blue-600/5 blur-[100px] rounded-full" />
-        <div className="absolute top-[30%] right-[15%] w-[250px] h-[250px] bg-purple-600/5 blur-[100px] rounded-full" />
+        {/* Ambient glow */}
+        <div className="absolute top-[15%] left-[20%] w-[400px] h-[400px] bg-blue-900/20 blur-[120px] rounded-full" />
+        <div className="absolute top-[20%] right-[20%] w-[350px] h-[350px] bg-purple-900/15 blur-[120px] rounded-full" />
         
+        {/* Left side geometric lines */}
+        <div className="absolute left-[8%] top-[15%] h-[40%]">
+          <div className="absolute left-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-cyan-500/30 to-transparent" />
+          <div className="absolute left-4 top-[10%] w-px h-[80%] bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent" />
+          <div className="absolute left-8 top-[20%] w-px h-[60%] bg-gradient-to-b from-transparent via-cyan-500/10 to-transparent" />
+          {/* Horizontal connectors */}
+          <div className="absolute left-0 top-[30%] w-8 h-px bg-gradient-to-r from-cyan-500/30 to-transparent" />
+          <div className="absolute left-0 top-[70%] w-4 h-px bg-gradient-to-r from-cyan-500/20 to-transparent" />
+        </div>
+        
+        {/* Right side geometric lines */}
+        <div className="absolute right-[8%] top-[15%] h-[40%]">
+          <div className="absolute right-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-cyan-500/30 to-transparent" />
+          <div className="absolute right-4 top-[10%] w-px h-[80%] bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent" />
+          <div className="absolute right-8 top-[20%] w-px h-[60%] bg-gradient-to-b from-transparent via-cyan-500/10 to-transparent" />
+          {/* Horizontal connectors */}
+          <div className="absolute right-0 top-[30%] w-8 h-px bg-gradient-to-l from-cyan-500/30 to-transparent" />
+          <div className="absolute right-0 top-[70%] w-4 h-px bg-gradient-to-l from-cyan-500/20 to-transparent" />
+        </div>
+
         {/* 3D Perspective Grid Floor */}
         <div 
-          className="absolute bottom-0 left-0 right-0 h-[50%]"
+          className="absolute bottom-0 left-0 right-0 h-[45%]"
           style={{
-            perspective: '500px',
+            perspective: '400px',
             perspectiveOrigin: '50% 0%',
           }}
         >
           <div 
             className="absolute inset-0"
             style={{
-              transform: 'rotateX(60deg)',
+              transform: 'rotateX(65deg)',
               transformOrigin: 'top center',
               background: `
-                linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px),
-                linear-gradient(0deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px)
+                linear-gradient(90deg, rgba(100, 150, 255, 0.12) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(100, 150, 255, 0.08) 1px, transparent 1px)
               `,
-              backgroundSize: '60px 60px',
-              maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)',
+              backgroundSize: '50px 50px',
+              maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 30%, black 60%, black 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 30%, black 60%, black 100%)',
             }}
+          />
+          {/* Grid glow overlay */}
+          <div 
+            className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-blue-900/20 to-transparent"
+            style={{ filter: 'blur(20px)' }}
           />
         </div>
 
-        {/* Subtle side architectural lines */}
-        <div className="absolute left-[5%] top-[20%] bottom-[30%] w-px bg-gradient-to-b from-transparent via-blue-500/20 to-transparent" />
-        <div className="absolute left-[8%] top-[25%] bottom-[35%] w-px bg-gradient-to-b from-transparent via-blue-500/10 to-transparent" />
-        <div className="absolute right-[5%] top-[20%] bottom-[30%] w-px bg-gradient-to-b from-transparent via-blue-500/20 to-transparent" />
-        <div className="absolute right-[8%] top-[25%] bottom-[35%] w-px bg-gradient-to-b from-transparent via-blue-500/10 to-transparent" />
+        {/* Bottom horizon glow */}
+        <div className="absolute bottom-[15%] left-1/2 -translate-x-1/2 w-[80%] h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent" />
       </div>
 
-      <div className="w-full max-w-md relative z-10 animate-in fade-in slide-in-from-bottom-6 duration-1000">
+      <div className="w-full max-w-md relative z-10">
         {/* Logo Section */}
         <div className="text-center mb-8">
-          {/* Circular Logo with Purple Ring */}
+          {/* Circular Logo with Purple/Cyan Ring */}
           <div className="inline-flex items-center justify-center mb-6 relative">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center border border-purple-500/50 shadow-lg shadow-purple-500/20">
-              <span className="text-2xl font-bold text-white">F</span>
+            {/* Outer glow */}
+            <div className="absolute inset-0 w-20 h-20 rounded-full bg-gradient-to-br from-purple-500/40 to-cyan-500/40 blur-xl" />
+            {/* Ring */}
+            <div 
+              className="relative w-16 h-16 rounded-full flex items-center justify-center"
+              style={{
+                background: 'linear-gradient(135deg, #1a1a2e 0%, #0d0d1a 100%)',
+                boxShadow: '0 0 30px rgba(139, 92, 246, 0.3), inset 0 0 20px rgba(0,0,0,0.5)',
+              }}
+            >
+              {/* Gradient border */}
+              <div 
+                className="absolute inset-0 rounded-full p-[2px]"
+                style={{
+                  background: 'linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #22d3ee 100%)',
+                  WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  WebkitMaskComposite: 'xor',
+                  maskComposite: 'exclude',
+                }}
+              />
+              <span className="text-2xl font-bold text-white/90">F</span>
             </div>
           </div>
-          <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-2">
-            F.O.R.C.E AI - Market Analyst System
+          
+          <h1 className="text-2xl md:text-[28px] font-bold text-white tracking-tight mb-2 leading-tight">
+            F.O.R.C.E AI - Market Analyst<br />System
           </h1>
-          <p className="text-slate-400 text-sm font-medium">Secure Access Portal</p>
+          <p className="text-slate-400 text-sm">Secure Access Portal</p>
         </div>
 
         {/* Auth Card */}
         <div className="relative">
-          {/* Card glow effect */}
-          <div className="absolute -inset-px bg-gradient-to-b from-blue-500/20 via-purple-500/10 to-blue-500/5 rounded-2xl blur-sm" />
+          {/* Card border glow */}
+          <div 
+            className="absolute -inset-[1px] rounded-2xl opacity-60"
+            style={{
+              background: 'linear-gradient(180deg, rgba(100, 150, 255, 0.3) 0%, rgba(139, 92, 246, 0.15) 50%, rgba(100, 150, 255, 0.1) 100%)',
+            }}
+          />
           
-          <div className="relative bg-[#0d1023]/90 backdrop-blur-xl border border-blue-500/20 p-8 rounded-2xl shadow-2xl">
+          <div className="relative bg-[#0c0e1a]/95 backdrop-blur-xl rounded-2xl p-8 shadow-2xl">
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-2">
                 <label className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
@@ -96,7 +142,10 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Full Name"
-                  className="w-full bg-[#141832] border border-blue-500/30 rounded-lg px-4 py-3.5 text-white focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/50 outline-none transition-all placeholder:text-slate-600 shadow-inner shadow-blue-500/5"
+                  className="w-full bg-[#12152a] border border-blue-500/25 rounded-lg px-4 py-3.5 text-white focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500/40 outline-none transition-all placeholder:text-slate-600 text-sm"
+                  style={{
+                    boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.3), 0 0 10px rgba(59, 130, 246, 0.05)',
+                  }}
                 />
               </div>
 
@@ -110,7 +159,10 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="email@address.com"
-                  className="w-full bg-[#141832] border border-blue-500/30 rounded-lg px-4 py-3.5 text-white focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/50 outline-none transition-all placeholder:text-slate-600 shadow-inner shadow-blue-500/5"
+                  className="w-full bg-[#12152a] border border-blue-500/25 rounded-lg px-4 py-3.5 text-white focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500/40 outline-none transition-all placeholder:text-slate-600 text-sm"
+                  style={{
+                    boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.3), 0 0 10px rgba(59, 130, 246, 0.05)',
+                  }}
                 />
               </div>
 
@@ -123,7 +175,10 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
               <button 
                 type="submit"
                 disabled={loading}
-                className="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3.5 rounded-lg transition-all shadow-lg shadow-purple-600/30 flex items-center justify-center gap-3 active:scale-[0.98] disabled:opacity-50 uppercase tracking-wider text-sm"
+                className="w-full bg-[#6366f1] hover:bg-[#7c7ff2] text-white font-bold py-3.5 rounded-lg transition-all flex items-center justify-center gap-3 disabled:opacity-50 uppercase tracking-[0.15em] text-sm"
+                style={{
+                  boxShadow: '0 4px 20px rgba(99, 102, 241, 0.35)',
+                }}
               >
                 {loading ? (
                   <div className="flex items-center gap-2">
@@ -139,10 +194,10 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
             {/* Divider */}
             <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-slate-700/50"></div>
+                <div className="w-full border-t border-slate-700/40"></div>
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-[#0d1023] px-4 text-slate-500 font-medium tracking-wider">Or</span>
+                <span className="bg-[#0c0e1a] px-4 text-slate-500 font-medium tracking-wider">Or</span>
               </div>
             </div>
 
@@ -151,7 +206,7 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
               type="button"
               onClick={handleGoogleLogin}
               disabled={loading}
-              className="w-full bg-slate-100 hover:bg-white text-slate-900 font-semibold py-3 rounded-lg transition-all shadow-md flex items-center justify-center gap-3 active:scale-[0.98] disabled:opacity-50"
+              className="w-full bg-white hover:bg-gray-50 text-slate-800 font-semibold py-3 rounded-lg transition-all shadow-md flex items-center justify-center gap-3 disabled:opacity-50"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
@@ -175,22 +230,25 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
             </button>
 
             {/* Login / Create Account Buttons */}
-            <div className="mt-8 pt-6 border-t border-slate-700/30 flex flex-col items-center gap-5">
+            <div className="mt-8 flex flex-col items-center gap-5">
               <div className="grid grid-cols-2 gap-4 w-full">
                 <button 
                   type="button" 
-                  className="w-full bg-transparent hover:bg-slate-800/50 border border-slate-600 text-white text-sm font-semibold py-3 rounded-lg transition-all"
+                  className="w-full bg-transparent hover:bg-slate-800/30 border border-slate-600/60 text-white text-sm font-medium py-3 rounded-lg transition-all"
                 >
                   Login
                 </button>
                 <button 
                   type="button" 
-                  className="w-full bg-purple-600 hover:bg-purple-500 border border-purple-600 text-white text-sm font-semibold py-3 rounded-lg transition-all shadow-md shadow-purple-600/20"
+                  className="w-full bg-[#6366f1] hover:bg-[#7c7ff2] text-white text-sm font-medium py-3 rounded-lg transition-all"
+                  style={{
+                    boxShadow: '0 2px 15px rgba(99, 102, 241, 0.25)',
+                  }}
                 >
                   Create Account
                 </button>
               </div>
-              <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-[0.15em]">
+              <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-[0.2em]">
                 End-to-End Encryption Enabled
               </p>
             </div>
@@ -198,9 +256,9 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
         </div>
 
         {/* Footer */}
-        <p className="text-center mt-8 text-slate-500 text-[11px] font-medium leading-relaxed">
-          Accessing this portal implies consent to the <br/>
-          <button className="text-blue-400 hover:text-blue-300 underline decoration-blue-500/30 underline-offset-4 transition-colors">
+        <p className="text-center mt-8 text-slate-500 text-[11px] leading-relaxed">
+          Accessing this portal implies consent to the<br />
+          <button className="text-blue-400 hover:text-blue-300 underline decoration-blue-400/40 underline-offset-2 transition-colors">
             Neural Data &amp; Privacy Protocol
           </button>
         </p>
