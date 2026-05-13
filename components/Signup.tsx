@@ -201,7 +201,7 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
         <p className="text-center mt-8 text-slate-500 text-[11px] font-medium leading-relaxed">
           Accessing this portal implies consent to the <br/>
           <button className="text-blue-400 hover:text-blue-300 underline decoration-blue-500/30 underline-offset-4 transition-colors">
-            Neural Data & Privacy Protocol
+            Neural Data &amp; Privacy Protocol
           </button>
         </p>
       </div>
@@ -210,5 +210,3 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
 };
 
 export default Signup;
-</content>
-<parameter name="taskNameActive">Updating Signup.tsx
